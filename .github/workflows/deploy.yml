@@ -1,0 +1,16 @@
+name: Deploy AniStream
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: curl -L "https://boolean-sims-artistic-tel.trycloudflare.com/anistream.html" -o index.html
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "deploy: AniStream from tunnel" || true
+          git push
