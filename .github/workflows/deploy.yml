@@ -7,10 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: curl -L "https://boolean-sims-artistic-tel.trycloudflare.com/anistream.html" -o index.html
+      - run: curl -L "https://organised-shanghai-inexpensive-regulations.trycloudflare.com/anistream.html" -o index.html
       - run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add index.html
-          git commit -m "deploy: AniStream from tunnel" || true
-          git push
+          git diff --staged --quiet || (git commit -m "deploy: AniStream full app" && git push)
